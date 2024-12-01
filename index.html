@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise and Sunset Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1 id="gradient-text">Sunrise and Sunset Dashboard</h1>
+        </header>
+        <main>
+            <div id="description-container">
+                <p id="description">{{ description }}</p>
+            </div>
+            <section id="dashboard">
+                <h2>Sunrise and Sunset Times</h2>
+                <button @click="useCurrentLocation">Use Current Location</button>
+                <select v-model="selectedLocation" @change="onLocationChange">
+                    <option value="" disabled>Select a location</option>
+                    <option v-for="(coords, city) in presetLocations" :key="city" :value="coords">
+                        {{ city }}
+                    </option>
+                </select>
+                <div id="filters">
+                    <label>
+                        <input type="checkbox" v-model="showSunrise"> Show Sunrise
+                    </label>
+                    <label>
+                        <input type="checkbox" v-model="showSunset"> Show Sunset
+                    </label>
+                    <label>
+                        <input type="checkbox" v-model="showSolarNoon"> Show Solar Noon
+                    </label>
+                    <label>
+                        <input type="checkbox" v-model="showDayLength"> Show Day Length
+                    </label>
+                </div>                
+                <div id="results" v-html="filteredResults.length > 0 ? filteredResults.join('') : '<p>No results to display. Please select a location or enter valid coordinates.</p>'"></div>
+            </section>
+            <section id="custom-location-section">
+                <input v-model="customLocation" placeholder="Enter Latitude,Longitude">
+                <button @click="useCustomLocation">Use Custom Location</button>
+            </section>
+        </main>
+        <footer>
+            <p>Website created by Andrew Zhang.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
