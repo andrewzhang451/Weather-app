@@ -9,13 +9,19 @@
 </head>
 <body>
     <div id="app">
+        <!-- this has the header -->
         <header>
             <h1 id="gradient-text">Sunrise and Sunset Dashboard</h1>
         </header>
+
+        <!-- this has the Main Content -->
         <main>
-            <div id="description-container">
+            <!-- this has the description -->
+            <section id="description-container">
                 <p id="description">{{ description }}</p>
-            </div>
+            </section>
+
+            <!-- this has the dashboard -->
             <section id="dashboard">
                 <h2>Sunrise and Sunset Times</h2>
                 <button @click="useCurrentLocation">Use Current Location</button>
@@ -25,7 +31,10 @@
                         {{ city }}
                     </option>
                 </select>
-                <div id="filters">
+                
+                <!-- this has the filters -->
+                <fieldset id="filters">
+                    <legend>Filters</legend>
                     <label>
                         <input type="checkbox" v-model="showSunrise"> Show Sunrise
                     </label>
@@ -38,14 +47,20 @@
                     <label>
                         <input type="checkbox" v-model="showDayLength"> Show Day Length
                     </label>
-                </div>                
+                </fieldset>                
+
+                <!-- this has the results -->
                 <div id="results" v-html="filteredResults.length > 0 ? filteredResults.join('') : '<p>No results to display. Please select a location or enter valid coordinates.</p>'"></div>
             </section>
+
+            <!-- this has the Custom Location -->
             <section id="custom-location-section">
                 <input v-model="customLocation" placeholder="Enter Latitude,Longitude">
                 <button @click="useCustomLocation">Use Custom Location</button>
             </section>
         </main>
+
+        <!-- this has the footer -->
         <footer>
             <p>Website created by Andrew Zhang.</p>
         </footer>
